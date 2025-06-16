@@ -7,7 +7,11 @@ index = indexes.PLAID(
 )
 
 model = models.ColBERT(
-    model_name_or_path="lightonai/GTE-ModernColBERT-v1",
+    model_name_or_path="jinaai/jina-colbert-v2",
+    query_prefix="[QueryMarker]",
+    document_prefix="[DocumentMarker]",
+    attend_to_expansion_tokens=True,
+    trust_remote_code=True,
 )
 
 documents_embeddings = model.encode(
@@ -27,7 +31,7 @@ queries_embeddings = model.encode(
     is_query=True,
 )
 
-matchs = index(queries_embeddings, k=30)
+matchs = index(queries_embeddings, k=10)
 
 assert isinstance(matchs, list)
 assert len(matchs) == 2
@@ -38,7 +42,7 @@ queries_embeddings = model.encode(
     is_query=True,
 )
 
-matchs = index(queries_embeddings, k=30)
+matchs = index(queries_embeddings, k=10)
 
 assert isinstance(matchs, list)
 assert len(matchs) == 1

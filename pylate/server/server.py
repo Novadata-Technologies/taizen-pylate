@@ -69,7 +69,7 @@ def parse_args():
     parser.add_argument(
         "--model",
         type=str,
-        default="lightonai/GTE-ModernColBERT-v1",
+        default="jinaai/jina-colbert-v2",
         help="Model to serve, can be an HF model or a path to a model",
     )
     return parser.parse_args()
